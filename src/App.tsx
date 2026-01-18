@@ -66,7 +66,7 @@ export default function App() {
             <View className="app-header">
               <Heading level={1}>Welcome to AI Chatbot</Heading>
               <View className="user-info">
-                <Text>Hello, {user?.username || 'User'}!</Text>
+                <Text>Hello, {user?.signInDetails?.loginId || user?.userId || 'User'}!</Text>
                 <button onClick={signOut} className="sign-out-btn">
                   Sign Out
                 </button>
