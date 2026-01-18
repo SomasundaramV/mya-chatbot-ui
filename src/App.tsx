@@ -1,5 +1,5 @@
 import React from 'react';
-import { Authenticator, View, Heading, Text, useTheme, Card } from '@aws-amplify/ui-react';
+import { Authenticator, View, Heading, Text, Card } from '@aws-amplify/ui-react';
 import { AIConversation } from '@aws-amplify/ui-react-ai';
 import { useAIConversation } from './client';
 import './App.css';
@@ -13,9 +13,6 @@ function ChatInterface() {
     handleSendMessage,
   ] = useAIConversation('chat');
 
-  console.log('Messages:', messages);
-  console.log('IsLoading:', isLoading);
-
   return (
     <View className="chat-container">
       <Card className="chat-card">
@@ -28,7 +25,6 @@ function ChatInterface() {
           isLoading={isLoading}
           handleSendMessage={handleSendMessage}
           variant="bubble"
-          className="chat-conversation"
         />
       </Card>
     </View>
@@ -36,8 +32,6 @@ function ChatInterface() {
 }
 
 export default function App() {
-  const { tokens } = useTheme();
-  
   return (
     <View className="app-container">
       <Authenticator
@@ -72,7 +66,7 @@ export default function App() {
             <View className="app-header">
               <Heading level={1}>Welcome to AI Chatbot</Heading>
               <View className="user-info">
-                <Text>Hello, {user?.attributes?.given_name || user?.attributes?.email}!</Text>
+                <Text>Hello, {user?.username || 'User'}!</Text>
                 <button onClick={signOut} className="sign-out-btn">
                   Sign Out
                 </button>

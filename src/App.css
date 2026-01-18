@@ -1,1 +1,206 @@
-.app-container {\n  min-height: 100vh;\n  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);\n  padding: 20px;\n  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;\n}\n\n.authenticated-app {\n  max-width: 1200px;\n  margin: 0 auto;\n}\n\n.app-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 30px;\n  padding: 20px;\n  background: rgba(255, 255, 255, 0.1);\n  border-radius: 12px;\n  backdrop-filter: blur(10px);\n  color: white;\n}\n\n.app-header h1 {\n  margin: 0;\n  font-size: 2.5rem;\n  font-weight: 700;\n}\n\n.user-info {\n  display: flex;\n  align-items: center;\n  gap: 15px;\n}\n\n.user-info p {\n  margin: 0;\n  font-size: 1.1rem;\n  font-weight: 500;\n}\n\n.sign-out-btn {\n  background: rgba(255, 255, 255, 0.2);\n  border: 1px solid rgba(255, 255, 255, 0.3);\n  color: white;\n  padding: 8px 16px;\n  border-radius: 8px;\n  cursor: pointer;\n  font-weight: 500;\n  transition: all 0.2s ease;\n}\n\n.sign-out-btn:hover {\n  background: rgba(255, 255, 255, 0.3);\n  transform: translateY(-1px);\n}\n\n.chat-container {\n  display: flex;\n  justify-content: center;\n  align-items: flex-start;\n}\n\n.chat-card {\n  width: 100%;\n  max-width: 800px;\n  min-height: 600px;\n  background: white;\n  border-radius: 16px;\n  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);\n  overflow: hidden;\n}\n\n.chat-header {\n  padding: 25px;\n  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);\n  color: white;\n  text-align: center;\n}\n\n.chat-header h2 {\n  margin: 0 0 8px 0;\n  font-size: 1.8rem;\n  font-weight: 600;\n}\n\n.chat-header p {\n  margin: 0;\n  opacity: 0.9;\n  font-size: 1rem;\n}\n\n.chat-conversation {\n  height: 500px;\n  padding: 20px;\n}\n\n/* Amplify UI overrides */\n[data-amplify-authenticator] {\n  --amplify-components-authenticator-router-background-color: transparent;\n  --amplify-components-authenticator-router-border-color: rgba(255, 255, 255, 0.2);\n}\n\n[data-amplify-authenticator] [data-amplify-router] {\n  background: rgba(255, 255, 255, 0.95);\n  border-radius: 16px;\n  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);\n  backdrop-filter: blur(10px);\n  max-width: 400px;\n  margin: 50px auto;\n  padding: 30px;\n}\n\n[data-amplify-authenticator] h1 {\n  text-align: center;\n  color: #4f46e5;\n  font-weight: 700;\n  margin-bottom: 20px;\n}\n\n/* AI Conversation styling */\n[data-amplify-ai-conversation] {\n  border: none;\n  border-radius: 12px;\n}\n\n[data-amplify-ai-conversation] [data-amplify-ai-conversation-message] {\n  margin-bottom: 15px;\n}\n\n[data-amplify-ai-conversation] [data-amplify-ai-conversation-message][data-amplify-ai-conversation-message-role=\"user\"] {\n  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);\n  color: white;\n  border-radius: 18px 18px 4px 18px;\n  padding: 12px 16px;\n  margin-left: 20%;\n}\n\n[data-amplify-ai-conversation] [data-amplify-ai-conversation-message][data-amplify-ai-conversation-message-role=\"assistant\"] {\n  background: #f8fafc;\n  border: 1px solid #e2e8f0;\n  border-radius: 18px 18px 18px 4px;\n  padding: 12px 16px;\n  margin-right: 20%;\n}\n\n[data-amplify-ai-conversation] [data-amplify-ai-conversation-input] {\n  border: 2px solid #e2e8f0;\n  border-radius: 25px;\n  padding: 12px 20px;\n  font-size: 16px;\n  transition: border-color 0.2s ease;\n}\n\n[data-amplify-ai-conversation] [data-amplify-ai-conversation-input]:focus {\n  border-color: #4f46e5;\n  outline: none;\n  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);\n}\n\n[data-amplify-ai-conversation] [data-amplify-ai-conversation-send-button] {\n  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);\n  border: none;\n  border-radius: 50%;\n  width: 45px;\n  height: 45px;\n  color: white;\n  cursor: pointer;\n  transition: transform 0.2s ease;\n}\n\n[data-amplify-ai-conversation] [data-amplify-ai-conversation-send-button]:hover {\n  transform: scale(1.05);\n}\n\n/* Responsive design */\n@media (max-width: 768px) {\n  .app-container {\n    padding: 10px;\n  }\n  \n  .app-header {\n    flex-direction: column;\n    gap: 15px;\n    text-align: center;\n  }\n  \n  .app-header h1 {\n    font-size: 2rem;\n  }\n  \n  .chat-card {\n    min-height: 500px;\n  }\n  \n  .chat-conversation {\n    height: 400px;\n    padding: 15px;\n  }\n  \n  [data-amplify-authenticator] [data-amplify-router] {\n    margin: 20px auto;\n    padding: 20px;\n  }\n}
+.app-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.authenticated-app {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  color: white;
+}
+
+.app-header h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-info p {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.sign-out-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.sign-out-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.chat-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.chat-card {
+  width: 100%;
+  max-width: 800px;
+  min-height: 600px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.chat-header {
+  padding: 25px;
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  text-align: center;
+}
+
+.chat-header h2 {
+  margin: 0 0 8px 0;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.chat-header p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+.chat-conversation {
+  height: 500px;
+  padding: 20px;
+}
+
+/* Amplify UI overrides */
+[data-amplify-authenticator] {
+  --amplify-components-authenticator-router-background-color: transparent;
+  --amplify-components-authenticator-router-border-color: rgba(255, 255, 255, 0.2);
+}
+
+[data-amplify-authenticator] [data-amplify-router] {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 16px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+}
+
+[data-amplify-authenticator] h1 {
+  text-align: center;
+  color: #4f46e5;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* AI Conversation styling */
+[data-amplify-ai-conversation] {
+  border: none;
+  border-radius: 12px;
+}
+
+[data-amplify-ai-conversation] [data-amplify-ai-conversation-message] {
+  margin-bottom: 15px;
+}
+
+[data-amplify-ai-conversation] [data-amplify-ai-conversation-message][data-amplify-ai-conversation-message-role="user"] {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  color: white;
+  border-radius: 18px 18px 4px 18px;
+  padding: 12px 16px;
+  margin-left: 20%;
+}
+
+[data-amplify-ai-conversation] [data-amplify-ai-conversation-message][data-amplify-ai-conversation-message-role="assistant"] {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px 18px 18px 4px;
+  padding: 12px 16px;
+  margin-right: 20%;
+}
+
+[data-amplify-ai-conversation] [data-amplify-ai-conversation-input] {
+  border: 2px solid #e2e8f0;
+  border-radius: 25px;
+  padding: 12px 20px;
+  font-size: 16px;
+  transition: border-color 0.2s ease;
+}
+
+[data-amplify-ai-conversation] [data-amplify-ai-conversation-input]:focus {
+  border-color: #4f46e5;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+}
+
+[data-amplify-ai-conversation] [data-amplify-ai-conversation-send-button] {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  border: none;
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+[data-amplify-ai-conversation] [data-amplify-ai-conversation-send-button]:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 10px;
+  }
+  
+  .app-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+  
+  .app-header h1 {
+    font-size: 2rem;
+  }
+  
+  .chat-card {
+    min-height: 500px;
+  }
+  
+  .chat-conversation {
+    height: 400px;
+    padding: 15px;
+  }
+  
+  [data-amplify-authenticator] [data-amplify-router] {
+    margin: 20px auto;
+    padding: 20px;
+  }
+}
