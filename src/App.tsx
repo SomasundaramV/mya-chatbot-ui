@@ -3,12 +3,7 @@ import { Authenticator, View, Heading, Text, Card, TextField, Button, Flex } fro
 import { useCustomChat } from './client';
 import './App.css';
 
-import React, { useState } from 'react';
-import { Authenticator, View, Heading, Text, Card, TextField, Button, Flex } from '@aws-amplify/ui-react';
-import { useCustomChat } from './client';
-import './App.css';
-
-function ChatInterface() {
+function ChatInterface({ user }: { user: any }) {
   const { messages, isLoading, sendMessage } = useCustomChat();
   const [inputValue, setInputValue] = useState('');
 
@@ -36,7 +31,12 @@ function ChatInterface() {
         <View className="chat-messages">
           {messages.map((message) => (
             <View key={message.id} className={`message ${message.role}`}>
-              <Text>{message.content}</Text>
+              <View className="message-header">
+                <Text className="message-sender">
+                  {message.role === 'user' ? user?.signInDetails?.loginId?.split('@')[0] || 'You' : 'Assistant'}
+                </Text>
+              </View>
+              <div dangerouslySetInnerHTML={{ __html: message.content.replace(/\n/g, '<br>').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') }} />
             </View>
           ))}
           {isLoading && (
@@ -105,7 +105,7 @@ export default function App() {
                 </button>
               </View>
             </View>
-            <ChatInterface />
+            <ChatInterface user={user} />
           </View>
         );
         }}

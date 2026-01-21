@@ -98,6 +98,24 @@
   border-bottom: 1px solid #e2e8f0;
 }
 
+.message-header {
+  margin-bottom: 5px;
+}
+
+.message-sender {
+  font-size: 0.8rem;
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+.message.user .message-sender {
+  color: white;
+}
+
+.message.assistant .message-sender {
+  color: #4f46e5;
+}
+
 .message {
   margin-bottom: 15px;
   padding: 12px 16px;
