@@ -1,17 +1,30 @@
-import React from 'react';
-import { Authenticator, View, Heading, Text, Card } from '@aws-amplify/ui-react';
-import { AIConversation } from '@aws-amplify/ui-react-ai';
-import { useAIConversation } from './client';
+import React, { useState } from 'react';
+import { Authenticator, View, Heading, Text, Card, TextField, Button, Flex } from '@aws-amplify/ui-react';
+import { useCustomChat } from './client';
+import './App.css';
+
+import React, { useState } from 'react';
+import { Authenticator, View, Heading, Text, Card, TextField, Button, Flex } from '@aws-amplify/ui-react';
+import { useCustomChat } from './client';
 import './App.css';
 
 function ChatInterface() {
-  const [
-    {
-      data: { messages },
-      isLoading,
-    },
-    handleSendMessage,
-  ] = useAIConversation('chat');
+  const { messages, isLoading, sendMessage } = useCustomChat();
+  const [inputValue, setInputValue] = useState('');
+
+  const handleSend = async () => {
+    if (inputValue.trim()) {
+      await sendMessage(inputValue);
+      setInputValue('');
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  };
 
   return (
     <View className="chat-container">
@@ -20,12 +33,30 @@ function ChatInterface() {
           <Heading level={2}>AI Chatbot Assistant</Heading>
           <Text>Ask me anything! I'm here to help.</Text>
         </View>
-        <AIConversation
-          messages={messages}
-          isLoading={isLoading}
-          handleSendMessage={handleSendMessage}
-          variant="bubble"
-        />
+        <View className="chat-messages">
+          {messages.map((message) => (
+            <View key={message.id} className={`message ${message.role}`}>
+              <Text>{message.content}</Text>
+            </View>
+          ))}
+          {isLoading && (
+            <View className="message assistant">
+              <Text>Typing...</Text>
+            </View>
+          )}
+        </View>
+        <Flex direction="row" gap="10px" padding="20px">
+          <TextField
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            onKeyPress={handleKeyPress}
+            placeholder="Type your message..."
+            flex="1"
+          />
+          <Button onClick={handleSend} disabled={isLoading || !inputValue.trim()}>
+            Send
+          </Button>
+        </Flex>
       </Card>
     </View>
   );

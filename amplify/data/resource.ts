@@ -1,11 +1,15 @@
 import { type ClientSchema, a, defineData } from '@aws-amplify/backend';
 
 const schema = a.schema({
-  chat: a.conversation({
-    aiModel: a.ai.model('Claude 3 Sonnet'),
-    systemPrompt: 'You are a helpful AI assistant. Provide clear, concise, and helpful responses to user questions.',
-  })
-  .authorization((allow) => allow.owner()),
+  sendMessage: a.mutation()
+    .arguments({
+      prompt: a.string().required(),
+    })
+    .returns(a.string())
+    .handler(a.handler.custom({
+      entry: './sendMessage.js'
+    }))
+    .authorization((allow) => allow.authenticated()),
 });
 
 export type Schema = ClientSchema<typeof schema>;
